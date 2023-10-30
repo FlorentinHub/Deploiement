@@ -103,7 +103,6 @@ class ProjetController extends Controller
             $imageName = $imagePath->hashName();
             
             Storage::disk('public')->put('images', $imagePath);
-            dd($imageName);
             $validatedData['image_projet'] = $imageName;
         }
 
