@@ -100,10 +100,10 @@ class ProjetController extends Controller
 
         if ($request->hasFile('image_projet')) {
             $imagePath = $request->file('image_projet');
-            $imageName = 'images/' . $imagePath->hashName();
+            $imageName = $imagePath->hashName();
             
             Storage::disk('public')->put('images', $imagePath);
-
+            dd($imageName);
             $validatedData['image_projet'] = $imageName;
         }
 

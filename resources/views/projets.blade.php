@@ -26,8 +26,7 @@
         <div class="col-md-4">
             <div class="portfoliocard">
                 <div class="coverphoto">
-                    <img class="coverphoto" src="{{ asset('storage/' . $projet->image_projet) }}"
-                        alt="{{ $projet->nom_projet }}">
+                    <img class="coverphoto" src="{{ asset('storage/' . $projet->image_projet) }}" alt="{{ $projet->nom_projet }}">
                 </div>
                 <div class="left_col">
                     <div class="followers">
