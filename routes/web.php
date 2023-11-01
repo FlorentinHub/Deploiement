@@ -27,9 +27,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/projet/{id}', [ProjetController::class, 'details'])->name('projet.details');
 Route::group(['middleware' => ['auth']], function () {
-    Route::group(['middleware' => ['CheckAdmin']], function () {
+    Route::group(['middleware' => ['checkadmin']], function () {
         //Collaborateurs:
-        Route::get('/ajouter-collaborateur', [CollaborateurController::class, 'create'])->name('ajouter-collaborateur')->middleware('checkadmin');
+        Route::get('/ajouter-collaborateur', [CollaborateurController::class, 'create'])->name('ajouter-collaborateur'); //->middleware('checkadmin')
         Route::post('/ajouter-collaborateur', [CollaborateurController::class, 'store']);
         //MODIFIER
         Route::get('/projet/{id}/edit', [ProjetController::class, 'edit'])->name('projet.edit');
