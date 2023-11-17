@@ -79,6 +79,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropbtn">{{ __('auth.admin') }}</a>
                         <div class="dropdown-content">
+                            <a href="/adminDashboard">Dashboard</a>
                             <a href="/ajouter-projet">{{ __('auth.addProject') }}</a>
                             <a href="/ajouter-collaborateur">{{ __('auth.addCollab') }}</a>
                             <a href="/users">Gestion utilisateurs</a>

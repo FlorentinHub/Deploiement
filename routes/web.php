@@ -23,7 +23,7 @@ Route::get('/projects', [AccueilController::class, 'showProjects']);
 Auth::routes(['verify' => true]);
 Route::get('/about', function () {
     return view('about');
-})->name('about');
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -52,5 +52,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ajouter-projet', [ProjetController::class, 'index']);
         Route::get('/ajouter-projet', [ProjetController::class, 'create']);
         Route::post('/projet', [ProjetController::class, 'store']);
+
+        //Admin Dashboard
+        Route::get('/adminDashboard', function() {
+            return view('admin.dashboard');
+        });
     });
 });
