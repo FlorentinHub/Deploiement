@@ -6,6 +6,8 @@ use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\CollaborateurController;
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\UserController;
+
 
 Route::get('lang/switch/{locale}', [LocalizationController::class, 'index'])->name('lang.switch');
 Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('lang');
@@ -26,8 +28,16 @@ Route::get('/about', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/projet/{id}', [ProjetController::class, 'details'])->name('projet.details');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['checkadmin']], function () {
+
+        //Gestion utilisateur
+        Route::get('/users', [UserController::class, 'index']);
+        Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
         //Collaborateurs:
         Route::get('/ajouter-collaborateur', [CollaborateurController::class, 'create'])->name('ajouter-collaborateur'); //->middleware('checkadmin')
         Route::post('/ajouter-collaborateur', [CollaborateurController::class, 'store']);
@@ -41,5 +51,6 @@ Route::group(['middleware' => ['auth']], function () {
         //AJOUT PROJET
         Route::get('/ajouter-projet', [ProjetController::class, 'index']);
         Route::get('/ajouter-projet', [ProjetController::class, 'create']);
+        Route::post('/projet', [ProjetController::class, 'store']);
     });
 });

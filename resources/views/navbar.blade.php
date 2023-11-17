@@ -81,6 +81,7 @@
                         <div class="dropdown-content">
                             <a href="/ajouter-projet">{{ __('auth.addProject') }}</a>
                             <a href="/ajouter-collaborateur">{{ __('auth.addCollab') }}</a>
+                            <a href="/users">Gestion utilisateurs</a>
                         </div>
                     </li>
                 @endif

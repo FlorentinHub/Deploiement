@@ -15,13 +15,25 @@
     @endforeach
     @extends('layout')
     @section('content')
-        <section class="hero">
+    <div class="card-body">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                session en cours
+            </div>
+        @else 
+        <div class="alert alert-success" role="alert">
+            Aucune session en cours
+        </div>
+        @endif
+
+    <section class="hero">
             <div class="hero-content">
                 <h1>{{ __('auth.welcome') }}</h1>
                 <p>{{ __('auth.laravel') }}</p>
                 <a href="#projets" class="btn">{{ __('auth.discover_my_projects') }}</a>
             </div>
         </section>
+
         @include('projets') 
         @include('footer')
     </body>

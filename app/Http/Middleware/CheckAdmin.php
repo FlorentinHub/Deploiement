@@ -12,7 +12,6 @@ class CheckAdmin
         if (auth()->check() && auth()->user()->isAdmin) {
             return $next($request);
         }
-        dd("prout");
         return redirect('/')->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page en tant qu\'administrateur.');
     }
 }

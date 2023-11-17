@@ -40,34 +40,6 @@ class ProjetController extends Controller
     }
 
 
-    public function uploadImage(Request $request, $id)
-    {
-        // Valider le fichier image téléchargé
-        $request->validate([
-            'image_projet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Exemple : Max 2MB
-        ]);
-
-        // Vérifier si le projet existe
-        $projet = Projet::find($id);
-
-        if (!$projet) {
-            // Gérer le cas où le projet n'existe pas
-            return redirect()->back()->with('error', 'Projet non trouvé.');
-        }
-
-        // Télécharger l'image et la stocker
-        $image = $request->file('image_projet');
-        $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('images/projets'), $imageName);
-
-        // Mettre à jour le champ image du projet
-        $projet->image_projet = $imageName; // Utilisez 'image_projet' au lieu de 'image'
-        $projet->save();
-
-        return redirect()->back()->with('success', 'Image du projet mise à jour.');
-    }
-
-
     public function addCollaborator($projetId, $collaboratorId)
     {
         // Valider l'existence du projet et du collaborateur
@@ -104,6 +76,7 @@ class ProjetController extends Controller
             
             Storage::disk('public')->put('images', $imagePath);
             $validatedData['image_projet'] = $imageName;
+            dd(Storage::disk('public')->put('images', $imagePath));
         }
 
         $projet = Projet::create($validatedData);
