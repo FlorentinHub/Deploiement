@@ -7,6 +7,7 @@ use App\Http\Controllers\CollaborateurController;
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 
 Route::get('lang/switch/{locale}', [LocalizationController::class, 'index'])->name('lang.switch');
@@ -54,8 +55,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/projet', [ProjetController::class, 'store']);
 
         //Admin Dashboard
-        Route::get('/adminDashboard', function() {
-            return view('admin.dashboard');
-        });
+        Route::get('/adminDashboard', [AdminController::class, 'dashboard']);
     });
 });
